@@ -40,4 +40,8 @@ class PlayerService
         $result = $this->conn->query($sql);
         return $result;
     }
+
+    public function updatePlayer () {
+        
+    }
 }
