@@ -1,24 +1,30 @@
-<?php 
+<?php
 include '../includes/db.php';
 include '../includes/header.php';
 
 $func = new PlayerService($conn);
+$db = new db($conn);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $role = $_POST['role'];
-
-
+    $lastname = $_POST['lastname'];
+    $firstname = $_POST['firstname'];
+    $roles = $_POST['roles'];
+    $db->Add($lastname, $firstname, $roles);
+    header('Location: /players');
+    exit;
 }
 ?>
 
 <h2>Add New Player</h2>
 <form method="POST" action="">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+    <label for="lastname">Lastname:</label>
+    <input type="text" id="lastname" name="lastname" required>
     <br>
-    <label for="role">Role:</label>
-    <input type="text" id="role" name="role" required>
+    <label for="firstname">Firstname:</label>
+    <input type="text" id="firstname" name="firstname">
+    <br>
+    <label for="roles">Role:</label>
+    <input type="text" id="roles" name="roles" required>
     <br>
     <button type="submit">Add Player</button>
 </form>

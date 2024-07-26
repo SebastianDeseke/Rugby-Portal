@@ -25,6 +25,7 @@
          $stmt->bind_param("s", $table);
          $stmt->execute();
          $stmt->close();
+         return $stmt;
         }
 
         public function GetOne (string $table, int $id){
@@ -46,6 +47,21 @@
             $stmt->bind_param("ssii", $lastname, $firstname, $roles, $id);
             $stmt->execute();
             $stmt->close();
+        }
+
+        public function Delete (string $table, int $id) {
+            $stmt = $this->conn->prepare("DELETE FROM $table WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        public function CheckSql ($sql) {
+            if ($this->conn->query($sql) === TRUE) {
+                echo "New player added successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $this->conn->error;
+            }
         }
 }
 
