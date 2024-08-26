@@ -2,7 +2,7 @@
 include '../includes/header.php';
 include '../includes/db.php';
 
-$func = new db($conn);
+$func = new db();
 $players_result = $func->GetAll('players');
 
 ?>
